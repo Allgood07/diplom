@@ -1,0 +1,12 @@
+Listen 6001
+<VirtualHost  *:6001>
+ DocumentRoot "/var/ftp"
+ <Directory "/var/ftp">
+    Options Indexes FollowSymLinks MultiViews
+    AllowOverride All
+    Order allow,deny
+    Allow from all
+ </Directory>
+
+
+</VirtualHost>

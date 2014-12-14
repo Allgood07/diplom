@@ -1,0 +1,97 @@
+# encoding: utf-8
+
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+Vagrant.configure("2") do |config|
+
+  config.vm.box = "trusty-server-cloudimg-i386-vagrant"
+  config.vm.box_url = "https://cloud-images.ubuntu.com/vagrant/trusty/current/trusty-server-cloudimg-i386-vagrant-disk1.box"
+  config.omnibus.chef_version = '11.0.0'
+  config.ssh.forward_agent = true
+
+  config.vm.network :forwarded_port, guest: 80 , host: 8000
+  config.vm.network :forwarded_port, guest: 5432 , host: 5433
+  config.vm.network :forwarded_port, guest: 6001 , host: 6001
+  config.vm.network :forwarded_port, guest: 22 , host: 1021
+
+  config.vm.synced_folder '../', '/home/vagrant/app', owner: 'vagrant', group: 'www-data', mount_options: ['dmode=775','fmode=775']
+
+  config.vm.provision :chef_solo do |chef|
+    chef.cookbooks_path = ["cookbooks"]
+    chef.add_recipe :apt
+    chef.add_recipe 'git'
+    chef.add_recipe 'php'
+    chef.add_recipe 'php::module_curl'
+    chef.add_recipe 'postgresql::server'
+    chef.add_recipe 'apache2'
+    chef.add_recipe 'apache2::mod_php5'
+    chef.add_recipe 'apache2::mod_rewrite'
+    chef.json = {
+        :git    => {
+            :prefix => "/usr/local"
+        },
+        :postgresql => {
+            :config   => {
+                :listen_addresses => "*",
+                :port             => "5432"
+            },
+            :pg_hba   => [
+                {
+                    :type   => "local",
+                    :db     => "postgres",
+                    :user   => "postgres",
+                    :addr   => nil,
+                    :method => "trust"
+                },
+                {
+                    :type   => "host",
+                    :db     => "all",
+                    :user   => "all",
+                    :addr   => "0.0.0.0/0",
+                    :method => "md5"
+                },
+                {
+                    :type   => "host",
+                    :db     => "all",
+                    :user   => "all",
+                    :addr   => "::1/0",
+                    :method => "md5"
+                }
+            ],
+            :password => {
+                :postgres => "1"
+            }
+        },
+        :apache => {
+            :default_site_enabled => "true",
+            :dir                  => "/etc/apache2",
+            :docroot_dir          => "/home/vagrant/app",
+            :log_dir              => "/var/log/apache2",
+            :error_log            => "error.log",
+            :user                 => "www-data",
+            :group                => "www-data",
+            :listen_ports         => [
+                "80"
+            ],
+            :contact              => "ops@example.com",
+            :timeout              => "300",
+            :keepalive            => "On",
+            :keepaliverequests    => "100",
+            :keepalivetimeout     => "5"
+        },
+        :php  => {
+            :directives         => {
+                'php-mbstring'       => :On,
+                :upload_max_filesize => "999M",
+            }
+        }
+
+    }
+  end
+
+
+
+  config.vm.provision 'shell', path: 'bootstrap.sh'
+
+end
