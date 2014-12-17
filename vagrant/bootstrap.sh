@@ -53,7 +53,8 @@ sudo service apache2  restart
 #APACHE END
 
 #APP SETTINGS
-cd /home/vagrant/app && mkdir ../settings && sudo cp ./protected/config/local-example.php ../settings/local.php
+cd /home/vagrant/app && ./composer.phar install && ./composer.phar update
+cd /home/vagrant/app/protected && ./yiic migrate up --interactive=0
 sudo cp ./protected/config/local-example.php ../settings/local.php
 
 sudo apt-get install -q -y --force-yes php5-gd
