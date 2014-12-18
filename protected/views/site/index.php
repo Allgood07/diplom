@@ -4,17 +4,71 @@
 $this->pageTitle=Yii::app()->name;
 ?>
 
-<h1>Welcome to <i><?php echo CHtml::encode(Yii::app()->name); ?></i></h1>
 
-<p>Congratulations! You have successfully created your Yii application.</p>
+<!-- Jumbotron Header -->
+<header class="jumbotron hero-spacer">
+    <h1><?php echo CHtml::encode(Yii::app()->name); ?></h1>
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsa, ipsam, eligendi, in quo sunt possimus non incidunt odit vero aliquid similique quaerat nam nobis illo aspernatur vitae fugiat numquam repellat.</p>
+    <p><a class="btn btn-primary btn-large" href="/account/login">Попробовать</a>
+    </p>
+</header>
 
-<p>You may change the content of this page by modifying the following two files:</p>
-<ul>
-	<li>View file: <code><?php echo __FILE__; ?></code></li>
-	<li>Layout file: <code><?php echo $this->getLayoutFile('main'); ?></code></li>
-</ul>
+<hr>
 
-<p>For more details on how to further develop this application, please read
-the <a href="http://www.yiiframework.com/doc/">documentation</a>.
-Feel free to ask in the <a href="http://www.yiiframework.com/forum/">forum</a>,
-should you have any questions.</p>
+<!-- Title -->
+<div class="row">
+    <div class="col-lg-12">
+        <h3>Возможности</h3>
+    </div>
+</div>
+<!-- /.row -->
+
+<!-- Page Features -->
+<div class="row text-center">
+
+    <div class="col-md-3 col-sm-6 hero-feature">
+        <div class="thumbnail">
+            <img src="/images/home_finansy.jpg" alt="">
+            <div class="caption">
+                <h3>Feature Label</h3>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-3 col-sm-6 hero-feature">
+        <div class="thumbnail">
+            <img src="/images/homefinancing.jpg" alt="">
+            <div class="caption">
+                <h3>Feature Label</h3>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-3 col-sm-6 hero-feature">
+        <div class="thumbnail">
+            <img src="/images/lichnye-finansy.jpg" alt="">
+            <div class="caption">
+                <h3>Feature Label</h3>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-3 col-sm-6 hero-feature">
+        <div class="thumbnail">
+            <img src="/images/Uchet-lichnyih-finansov.jpg" alt="">
+            <div class="caption">
+                <h3>Feature Label</h3>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+
+            </div>
+        </div>
+    </div>
+
+</div>
+<!-- /.row -->

@@ -7,27 +7,19 @@
 
 ?>
 
-<div class="form">
-    ЕБАТЬ ФИНАНСЫ
-    <?php echo CHtml::beginForm(); ?>
 
-    <?php echo CHtml::errorSummary($model); ?>
+<?php echo CHtml::beginForm(); ?>
+<?php echo CHtml::errorSummary($model); ?>
 
-    <div class="row">
-        <?php echo CHtml::activeLabel($model, 'name'); ?>
-        <?php echo CHtml::activeTextField($model, 'name'); ?>
+    <div class="form-group">
+        <label for="exampleInputEmail1">Название проекта</label>
+        <?php echo CHtml::activeTextField($model, 'name', array('class' => 'form-control')); ?>
+    </div>
+    <div class="form-group">
+        <label for="exampleInputEmail1">Описание проекта</label>
+        <?php echo CHtml::activeTextArea($model, 'description', array('class' => 'form-control')); ?>
     </div>
 
-    <div class="row">
-        <?php echo CHtml::activeLabel($model, 'description'); ?>
-        <?php echo CHtml::activeTextField($model, 'description'); ?>
-    </div>
+<?php echo CHtml::submitButton('Создать', array('class' => 'btn btn-default')); ?>
 
-
-
-    <div class="row submit">
-        <?php echo CHtml::submitButton('Создать'); ?>
-    </div>
-
-    <?php echo CHtml::endForm(); ?>
-</div><!-- form -->
+<?php echo CHtml::endForm(); ?>

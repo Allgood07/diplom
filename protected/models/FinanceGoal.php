@@ -7,6 +7,10 @@ class FinanceGoal extends FinanceGoalTable{
     const  PeriodMinBalance = 1;
 
 
+    const StateInProgress = 0;
+    const StateDone = 1;
+    const StateFail = 2;
+
     public static function model($className = __CLASS__)
     {
         return parent::model($className);
@@ -34,6 +38,27 @@ class FinanceGoal extends FinanceGoalTable{
     {
         $types = self::getTypes();
         return $types[$type];
+
+    }
+
+    public static function getStates()
+    {
+
+        return array(
+
+            self::StateDone => "Выполнена",
+            self::StateFail => "Провалена",
+            self::StateInProgress => "В Процессе",
+
+        );
+
+    }
+
+    public static function getStateName($state)
+    {
+
+        $states = self::getStates();
+        return $states[$state];
 
     }
 

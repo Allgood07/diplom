@@ -5,17 +5,42 @@
  * @var $models Finance[]
  */
 
+
+
 ?>
+<h1>Мои финансовые проекты (<a href="/finance/create">Создать Новый Проект</a>):</h1>
 
-<?php foreach ($models as $index => $model) { ?>
+<table class="table table-condensed">
+    <thead>
+    <tr>
+        <th>Номер</th>
 
-    <div>
-        <p>Номер:<?php echo $index + 1; ?></p>
+        <th>Название</th>
+        <th>Баланс</th>
+        <th>Количество активных задач</th>
+        <th>Посмотреть</th>
+    </tr>
+    </thead>
+    <tbody>
 
-        <p>Название: <?php echo $model->name; ?></p>
 
-        <a href="/finance/view?id=<?php echo $model->id; ?>">Посмотреть</a>
-        <br><br>
-    </div>
+    <?php foreach ($models as $index => $model) {
 
-<?php } ?>
+        $activeGoalsCount = count(FinanceGoal::model()->findAllByAttributes(array('finance_id'=>$model->id , 'state' => FinanceGoal::StateInProgress ) ));
+
+        ?>
+
+
+        <tr>
+            <td><?php echo $index + 1; ?></td>
+            <td> <?php echo $model->name; ?></td>
+            <td> <?php echo $model->financeStates[0]->value; ?></td>
+            <td> <?php echo $activeGoalsCount; ?></td>
+            <td><a href="/finance/view?id=<?php echo $model->id; ?>">Посмотреть</a></td>
+        </tr>
+
+    <?php } ?>
+
+
+    </tbody>
+</table>

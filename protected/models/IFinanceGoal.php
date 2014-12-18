@@ -7,9 +7,12 @@ interface IFinanceGoal {
 
     public function getDescription();
 
-    public function createNew();
-
+    public function createNew($data);
 
     public function checkGoal();
 
+    public function getCreateViewName();
+
+
+    public function getDetailViewName();
 } 

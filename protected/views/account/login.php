@@ -1,47 +1,41 @@
 <?php
 /* @var $this SiteController */
 /* @var $model LoginForm */
-/* @var $form CActiveForm  */
+/* @var $form CActiveForm */
 
-$this->pageTitle=Yii::app()->name . ' - Login';
-$this->breadcrumbs=array(
-	'Login',
-);
 ?>
 
-<h1>Login</h1>
 
-<p>Please fill out the following form with your login credentials:</p>
 
-<div class="form">
-<?php $form=$this->beginWidget('CActiveForm', array(
-	'id'=>'login-form',
-	'enableClientValidation'=>true,
-	'clientOptions'=>array(
-		'validateOnSubmit'=>true,
-	),
+
+<?php $form = $this->beginWidget('CActiveForm', array(
+    'id' => 'login-form',
+    'enableClientValidation' => true,
+    'clientOptions' => array(
+        'validateOnSubmit' => true,
+    ),
+    'htmlOptions' => array(
+        'class' => 'form-signin',
+        'role' => 'form'
+    ),
 )); ?>
 
-	<p class="note">Fields with <span class="required">*</span> are required.</p>
+<h2 class="form-signin-heading">Войти</h2>
+<?php echo $form->error($model, 'email'); ?>
+<?php echo $form->error($model, 'pass'); ?>
+<label for="inputEmail" class="sr-only">Почта</label>
+<?php echo $form->emailField($model, 'email', array('class' => 'form-control')); ?>
 
-	<div class="row">
-		<?php echo $form->labelEx($model,'email'); ?>
-		<?php echo $form->textField($model,'email'); ?>
-		<?php echo $form->error($model,'email'); ?>
-	</div>
+<label for="inputPassword" class="sr-only">Пароль</label>
 
-	<div class="row">
-		<?php echo $form->labelEx($model,'pass'); ?>
-		<?php echo $form->passwordField($model,'pass'); ?>
-		<?php echo $form->error($model,'pass'); ?>
-		<p class="hint">
-			Hint: You may login with <kbd>demo</kbd>/<kbd>demo</kbd> or <kbd>admin</kbd>/<kbd>admin</kbd>.
-		</p>
-	</div>
+<?php echo $form->passwordField($model, 'pass', array('class' => 'form-control')); ?>
 
-	<div class="row buttons">
-		<?php echo CHtml::submitButton('Логин'); ?>
-	</div>
+<a href="/account/reg">Регистрация</a>
+
+<?php echo CHtml::submitButton('Зайти', array('class' => 'btn btn-lg btn-primary btn-block')); ?>
+
+
+
 
 <?php $this->endWidget(); ?>
 </div><!-- form -->

@@ -6,37 +6,62 @@
  */
 
 ?>
-<div class="form">
-    <?php echo CHtml::beginForm(); ?>
-
-    <?php echo CHtml::errorSummary($model); ?>
-
-    <div class="row">
-        <?php echo CHtml::activeLabel($model, 'email'); ?>
-        <?php echo CHtml::activeTextField($model, 'email'); ?>
-    </div>
-
-    <div class="row">
-        <?php echo CHtml::activeLabel($model, 'pass'); ?>
-        <?php echo CHtml::activePasswordField($model, 'pass'); ?>
-    </div>
 
 
-    <div class="row">
-        <?php echo CHtml::activeLabel($model, 'first_name'); ?>
-        <?php echo CHtml::activeTelField($model, 'first_name'); ?>
-    </div>
+<?php
+/* @var $this SiteController */
+/* @var $model LoginForm */
+/* @var $form CActiveForm */
+
+?>
 
 
-    <div class="row">
-        <?php echo CHtml::activeLabel($model, 'last_name'); ?>
-        <?php echo CHtml::activeTextField($model, 'last_name'); ?>
-    </div>
 
 
-    <div class="row submit">
-        <?php echo CHtml::submitButton('Зарегистрироваться'); ?>
-    </div>
+<?php $form = $this->beginWidget('CActiveForm', array(
+    'id' => 'login-form',
+    'enableClientValidation' => true,
+    'clientOptions' => array(
+        'validateOnSubmit' => true,
+    ),
+    'htmlOptions' => array(
+        'class' => 'form-signin signup-form',
+        'role' => 'form'
+    ),
+)); ?>
 
-    <?php echo CHtml::endForm(); ?>
+<h2 class="form-signin-heading">Регистрация</h2>
+<?php echo CHtml::errorSummary($model); ?>
+
+<label >Почта</label>
+<?php echo $form->emailField($model, 'email', array('class' => 'form-control')); ?>
+
+<label>Пароль</label>
+
+<?php echo $form->passwordField($model, 'pass', array('class' => 'form-control')); ?>
+
+
+<label >Имя</label>
+
+<?php echo $form->textField($model, 'first_name', array('class' => 'form-control')); ?>
+
+
+<label  >Фамилия</label>
+
+<?php echo $form->textField($model, 'last_name', array('class' => 'form-control')); ?>
+
+
+<?php echo CHtml::submitButton('Зарегистрироваться', array('class' => 'btn btn-lg btn-primary btn-block')); ?>
+
+
+
+
+<?php $this->endWidget(); ?>
 </div><!-- form -->
+
+<style>
+
+    .signup-form label{
+        height: 20px;;
+    }
+</style>

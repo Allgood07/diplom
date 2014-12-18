@@ -22,7 +22,7 @@ class FinanceGoalController extends BaseController
         $goalTypes = FinanceGoal::getTypes();
 
 
-        $this->render('create', ['types' => $goalTypes]);
+        $this->render('create', ['types' => $goalTypes, 'financeId' => $finance_id]);
 
 
     }
@@ -44,26 +44,71 @@ class FinanceGoalController extends BaseController
 
         $goal = FinanceGoal::getType($type);
 
-        if (isset($_POST[get_class($goal)])) {
+        /**
+         * @var $goal IFinanceGoal
+         */
 
-            $goal->attributes = $_POST[get_class($goal)];
+        if (isset($_POST['Goal'])) {
 
+            $data = $_POST['Goal'];
+            $data['financeId'] = $finance_id;
+            $data['type'] = $type;
 
-            if ($goal->createNew()) {
-
+            if ($goal->createNew($data)) {
 
                 $this->redirect('/finance/view?id=' . $finance_id);
 
             }
         }
 
+        $viewName = $goal->getCreateViewName();
 
 
 
-        $models = FinanceCommit::model()->findAllByAttributes(['finance_id' => $finance_id]);
+
+        $this->render($viewName, ['model' => $goal , 'finance' => $finance]);
+    }
+
+    public function actionList($finance_id)
+    {
+
+        $finance = Finance::model()->findByPk($finance_id);
+
+        /**
+         * @var $finance Finance
+         */
+
+
+        if ($finance->account_id != $this->Account->id) {
+            return false;
+        }
+
+        $models = FinanceGoal::model()->findAllByAttributes(['finance_id' => $finance_id]);
 
         $this->render('list', ['models' => $models]);
     }
 
+
+    public function actionDetail($id)
+    {
+
+        $goal = FinanceGoal::model()->findByPk($id);
+        $goal->data = json_decode($goal->data);
+
+        $finance = Finance::model()->findByPk($goal->finance_id);
+
+        /**
+         * @var $finance Finance
+         */
+
+
+        if ($finance->account_id != $this->Account->id) {
+            return false;
+        }
+
+        $typeObj = FinanceGoal::getType($goal->type);
+
+        $this->render( $typeObj->getDetailViewName() , ['model' => $goal]);
+    }
 
 }

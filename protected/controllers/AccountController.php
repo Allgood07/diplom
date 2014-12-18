@@ -1,6 +1,6 @@
 <?php
 
-class AccountController extends Controller
+class AccountController extends BaseController
 {
     /**
      * Declares class-based actions.
@@ -19,6 +19,11 @@ class AccountController extends Controller
 
     public function actionReg()
     {
+
+        if(!Yii::app()->user->isGuest){
+            $this->redirect('finance/list');
+        }
+
         $model = new Account();
 
         if (isset($_POST['ajax']) && $_POST['ajax'] === 'login-form') {
@@ -34,7 +39,7 @@ class AccountController extends Controller
             // validate user input and redirect to the previous page if valid
             if ($model->save()) {
 
-                $this->redirect('/profile');
+                $this->redirect('/account/login');
 
             }
         }
@@ -61,6 +66,11 @@ class AccountController extends Controller
      */
     public function actionLogin()
     {
+
+        if(!Yii::app()->user->isGuest){
+            $this->redirect('finance/list');
+        }
+
         $model = new Account();
 
         // if it is ajax validation request
