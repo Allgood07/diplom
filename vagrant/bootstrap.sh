@@ -54,8 +54,7 @@ sudo service apache2  restart
 
 #APP SETTINGS
 cd /home/vagrant/app && ./composer.phar install && ./composer.phar update
-cd /home/vagrant/app/protected && ./yiic migrate up --interactive=0
-sudo cp ./protected/config/local-example.php ../settings/local.php
+cd /home/vagrant/app/protected && php yiic.php migrate up --interactive=0 
 sudo mkdir -p /home/vagrant/app/protected/runtime
 sudo chmod -R 777 /home/vagrant/app/protected/runtime
 sudo mkdir -p /home/vagrant/app/assets
