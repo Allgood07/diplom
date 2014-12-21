@@ -8,19 +8,24 @@ $this->pageTitle=Yii::app()->name;
 <!-- Jumbotron Header -->
 <header class="jumbotron hero-spacer">
     <h1><?php echo CHtml::encode(Yii::app()->name); ?></h1>
-    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsa, ipsam, eligendi, in quo sunt possimus non incidunt odit vero aliquid similique quaerat nam nobis illo aspernatur vitae fugiat numquam repellat.</p>
+    <p>
+        <br>
+        ФИНАНСОВАЯ СВОБОДА<br>
+        <br>
+        Позвольте себе больше,<br>
+        владейте чем мечтали.<br>
+        <br>
+        <br>
+        Регулярное использование Домашних Финансов позволит Вам ежемесячно откладывать на Ваши цели не менее 15% от доходов.<br>
+
+    </p>
     <p><a class="btn btn-primary btn-large" href="/account/login">Попробовать</a>
     </p>
 </header>
 
 <hr>
 
-<!-- Title -->
-<div class="row">
-    <div class="col-lg-12">
-        <h3>Возможности</h3>
-    </div>
-</div>
+
 <!-- /.row -->
 
 <!-- Page Features -->
@@ -30,8 +35,8 @@ $this->pageTitle=Yii::app()->name;
         <div class="thumbnail">
             <img src="/images/home_finansy.jpg" alt="">
             <div class="caption">
-                <h3>Feature Label</h3>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+                <h3>Бюджет</h3>
+                <p>Котролируйте свой бюджет каждый день.</p>
 
             </div>
         </div>
@@ -41,8 +46,8 @@ $this->pageTitle=Yii::app()->name;
         <div class="thumbnail">
             <img src="/images/homefinancing.jpg" alt="">
             <div class="caption">
-                <h3>Feature Label</h3>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+                <h3>Экономия</h3>
+                <p>Экономьте свои деньги с помощью задач.</p>
 
             </div>
         </div>
@@ -52,8 +57,8 @@ $this->pageTitle=Yii::app()->name;
         <div class="thumbnail">
             <img src="/images/lichnye-finansy.jpg" alt="">
             <div class="caption">
-                <h3>Feature Label</h3>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+                <h3>Изучайте</h3>
+                <p>Изучайте новые возможно котролирования бюджета.</p>
 
             </div>
         </div>
@@ -63,8 +68,8 @@ $this->pageTitle=Yii::app()->name;
         <div class="thumbnail">
             <img src="/images/Uchet-lichnyih-finansov.jpg" alt="">
             <div class="caption">
-                <h3>Feature Label</h3>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+                <h3>Контроль</h3>
+                <p>Контролируйте сразу несколько своих бюджетов.</p>
 
             </div>
         </div>

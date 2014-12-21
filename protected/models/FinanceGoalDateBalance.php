@@ -23,8 +23,38 @@ class FinanceGoalDateBalance implements IFinanceGoal {
 
     }
 
-    public function checkGoal()
+    /**
+     * @param $goal FinanceGoal
+     * @return bool
+     */
+    public function checkGoal($goal)
     {
+        $today = new DateTime();
+        $today->setTimestamp(time());
+        $today->setTime(0,0,0);
+
+        $date = $goal->data->date . ' 00:00:00';
+        $date =  DateTime::createFromFormat('Y-m-d H:i:s', $date);
+
+
+        $interval = $today->diff($date);
+
+        if( ($interval->invert == 1) ||  $interval->d == 0 ){
+
+            $minBalance = $goal->data->value;
+            if($goal->finance->financeStates[0]->value >= $minBalance){
+                $goal->state = FinanceGoal::StateDone;
+            }else{
+                $goal->state = FinanceGoal::StateFail;
+            }
+
+            $goal->data = json_encode($goal->data);
+
+            return $goal->save();
+        }
+
+        return true;
+
 
     }
 
@@ -35,7 +65,7 @@ class FinanceGoalDateBalance implements IFinanceGoal {
 
     public function getDescription()
     {
-        return "Нужно иметь сумму не ниже, чем вы укажите к определённой дате";
+        return "К определённой дате нужно иметь сумму не ниже, чем вы укажите.\nЭто будет вас мотивировать планировать бюджет на долгий период";
     }
 
     public function getCreateViewName()

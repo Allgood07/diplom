@@ -41,7 +41,7 @@ class CDateHelper
 
 
     public static function timezoneConverter($time,$strategy){
-        return time();
+        return $time;
 
     }
 

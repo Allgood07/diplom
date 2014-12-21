@@ -20,14 +20,12 @@
     ),
 )); ?>
 
-<h2 class="form-signin-heading">Войти</h2>
+<label for="inputEmail" >Почта</label>
 <?php echo $form->error($model, 'email'); ?>
-<?php echo $form->error($model, 'pass'); ?>
-<label for="inputEmail" class="sr-only">Почта</label>
 <?php echo $form->emailField($model, 'email', array('class' => 'form-control')); ?>
 
-<label for="inputPassword" class="sr-only">Пароль</label>
-
+<label for="inputPassword" >Пароль</label>
+<?php echo $form->error($model, 'pass'); ?>
 <?php echo $form->passwordField($model, 'pass', array('class' => 'form-control')); ?>
 
 <a href="/account/reg">Регистрация</a>

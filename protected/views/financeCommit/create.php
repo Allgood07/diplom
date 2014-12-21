@@ -7,32 +7,24 @@
 
 ?>
 
-<div class="form">
-    <?php echo CHtml::beginForm(); ?>
+<a type="button" class="btn btn-link" href="/finance/view?id=<?php echo $model->finance_id; ?>">Назад</a>
 
-    <?php echo CHtml::errorSummary($model); ?>
+<?php echo CHtml::beginForm('','post',array('style'=>'width: 560px;margin: 0 auto;')); ?>
+<?php echo CHtml::errorSummary($model); ?>
 
-
-    <div class="row">
-        <?php echo CHtml::activeLabel($model, 'type'); ?>
-        <?php echo CHtml::activeDropDownList($model, 'type', FinanceCommit::getTypes()); ?>
+    <div class="form-group">
+        <label for="exampleInputEmail1">Тип</label>
+        <?php echo CHtml::activeDropDownList($model, 'type', FinanceCommit::getTypes(), array('class' => 'form-control')); ?>
+    </div>
+    <div class="form-group">
+        <label for="exampleInputEmail1">Сумма</label>
+        <?php echo CHtml::activeNumberField($model, 'value', array('class' => 'form-control')); ?>
+    </div>
+    <div class="form-group">
+        <label for="exampleInputEmail1">Описание</label>
+        <?php echo CHtml::activeTextArea($model, 'description', array('class' => 'form-control')); ?>
     </div>
 
+<?php echo CHtml::submitButton('Сохранить', array('class' => 'btn btn-default')); ?>
 
-    <div class="row">
-        <?php echo CHtml::activeLabel($model, 'value'); ?>
-        <?php echo CHtml::activeTextField($model, 'value'); ?>
-    </div>
-
-
-    <div class="row">
-        <?php echo CHtml::activeLabel($model, 'description'); ?>
-        <?php echo CHtml::activeTextArea($model, 'description'); ?>
-    </div>
-
-    <div class="row submit">
-        <?php echo CHtml::submitButton('Создать изменения'); ?>
-    </div>
-
-    <?php echo CHtml::endForm(); ?>
-</div><!-- form -->
+<?php echo CHtml::endForm(); ?>

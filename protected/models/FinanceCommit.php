@@ -29,7 +29,7 @@ class FinanceCommit extends FinanceCommitTable
     public static function getTypes()
     {
 
-        return array(FinanceCommit::SPEND => "Потратил", FinanceCommit::ADD => "Добавил");
+        return array(FinanceCommit::ADD => "Добавил" , FinanceCommit::SPEND => "Потратил");
 
     }
 

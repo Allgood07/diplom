@@ -46,6 +46,7 @@ class FinanceCommitController extends BaseController
             }
         }
 
+        $model->finance_id = $finance_id;
         $this->render('create', ['model' => $model]);
 
 
@@ -67,7 +68,7 @@ class FinanceCommitController extends BaseController
 
         $models = FinanceCommit::model()->findAllByAttributes(['finance_id' => $finance_id]);
 
-        $this->render('list', ['models' => $models]);
+        $this->render('list', ['models' => $models, 'finance'=>$finance]);
     }
 
 

@@ -8,6 +8,28 @@ class Account extends AccountTable
         return parent::model($className);
     }
 
+
+    public function attributeLabels()
+    {
+
+        $oldLabels = parent::attributeLabels();
+
+        $newLabels =  array(
+            'id' => 'ID',
+            'email' => 'Почта',
+            'pass' => 'Пароль',
+            'salt' => 'Salt',
+            'first_name' => 'Имя',
+            'last_name' => 'Фамилия',
+            'reg_date' => 'Дата регистрации',
+            'is_admin' => 'Администратор ?',
+        );
+
+        $newLabels = array_merge($oldLabels,$newLabels);
+
+        return $newLabels;
+    }
+
     public function rules()
     {
         $oldRules = parent::rules();
@@ -15,11 +37,23 @@ class Account extends AccountTable
         $oldRules[0] = array('email, pass', 'required');
         $oldRules[3] = array('pass', 'length', 'max' => 32);
         array_push($oldRules, array('salt', 'safe'));
+        array_push($oldRules,   array('email', 'unique','message'=>'Такая почта уже занята!', 'on'=>'reg') );
 
+        array_push($oldRules,  array('first_name, last_name', 'required', 'on'=>'reg'));
         return $oldRules;
 
     }
 
+    public function uniqueEmail($attribute, $params)
+    {
+        // Set $emailExist variable true or false by using your custom query on checking in database table if email exist or not.
+        // You can user $this->{$attribute} to get attribute value.
+
+        $emailExist = true;
+
+        if($emailExist)
+            $this->addError('email','Email already exists');
+    }
 
     public function login()
     {

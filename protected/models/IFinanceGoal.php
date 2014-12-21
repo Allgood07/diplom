@@ -9,7 +9,7 @@ interface IFinanceGoal {
 
     public function createNew($data);
 
-    public function checkGoal();
+    public function checkGoal($goal);
 
     public function getCreateViewName();
 

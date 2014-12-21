@@ -8,7 +8,9 @@
 ?>
 
 
-<?php echo CHtml::beginForm(); ?>
+    <a type="button" class="btn btn-link" href="/finance/list">Назад</a>
+
+<?php echo CHtml::beginForm('','post',array('style'=>'width: 560px;margin: 0 auto;')); ?>
 <?php echo CHtml::errorSummary($model); ?>
 
     <div class="form-group">

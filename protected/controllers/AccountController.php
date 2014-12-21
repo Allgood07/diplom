@@ -24,7 +24,7 @@ class AccountController extends BaseController
             $this->redirect('finance/list');
         }
 
-        $model = new Account();
+        $model = new Account('reg');
 
         if (isset($_POST['ajax']) && $_POST['ajax'] === 'login-form') {
             echo CActiveForm::validate($model);
@@ -87,6 +87,7 @@ class AccountController extends BaseController
                 $this->redirect(Yii::app()->user->returnUrl);
         }
         // display the login form
+        $model->pass = "";
         $this->render('login', array('model' => $model));
     }
 

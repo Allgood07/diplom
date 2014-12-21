@@ -66,7 +66,7 @@ class FinanceGoalController extends BaseController
 
 
 
-        $this->render($viewName, ['model' => $goal , 'finance' => $finance]);
+        $this->render($viewName, ['model' => $goal , 'finance' => $finance, 'financeId' => $finance_id]);
     }
 
     public function actionList($finance_id)
@@ -85,7 +85,7 @@ class FinanceGoalController extends BaseController
 
         $models = FinanceGoal::model()->findAllByAttributes(['finance_id' => $finance_id]);
 
-        $this->render('list', ['models' => $models]);
+        $this->render('list', ['models' => $models,'finance'=>$finance]);
     }
 
 
@@ -109,6 +109,29 @@ class FinanceGoalController extends BaseController
         $typeObj = FinanceGoal::getType($goal->type);
 
         $this->render( $typeObj->getDetailViewName() , ['model' => $goal]);
+    }
+
+
+    public function actionCheck($id)
+    {
+
+        $goal = FinanceGoal::model()->findByPk($id);
+        $goal->data = json_decode($goal->data);
+
+        $finance = Finance::model()->findByPk($goal->finance_id);
+
+        /**
+         * @var $finance Finance
+         */
+
+
+        if ($finance->account_id != $this->Account->id) {
+            return false;
+        }
+
+        $typeObj = FinanceGoal::getType($goal->type);
+        $typeObj->checkGoal($goal);
+        $this->redirect('/financeGoal/detail?id='.$id);
     }
 
 }

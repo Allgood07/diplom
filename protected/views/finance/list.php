@@ -6,10 +6,10 @@
  */
 
 
-
 ?>
-<h1>Мои финансовые проекты (<a href="/finance/create">Создать Новый Проект</a>):</h1>
-
+<h1>Мои финансовые проекты</h1>
+<h3><a href="/finance/create">Создать Новый Проект</a></h3>
+<?php if(count($models) > 0 ) {?>
 <table class="table table-condensed">
     <thead>
     <tr>
@@ -44,3 +44,9 @@
 
     </tbody>
 </table>
+
+<?php }else{ ?>
+    <br><br>
+    <h2>Пока у вас нет финансовых проектов! <a href="/finance/create">Создайте новый</a> </h2>
+
+<?php } ?>
