@@ -1,7 +1,6 @@
 /assets/*
 !/assets/.gitkeep
 /vendor/
-/components/
 
 /protected/runtime/*
 !/protected/runtime/.gitkeep

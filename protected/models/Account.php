@@ -65,7 +65,7 @@ class Account extends AccountTable
         } else {
             $this->addError('pass', 'Неправильный email или пароль.');
             return false;
-        };
+        }
     }
 
     public function checkPass($password)

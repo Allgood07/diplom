@@ -1,11 +1,8 @@
 #!/bin/bash
-
 sudo chown www-data:www-data /home/vagrant/app
 
 sudo apt-get -q -y --force-yes install python-software-properties
 sudo apt-get -q -y --force-yes install software-properties-common
-
-
 
 #PHP5
 sudo add-apt-repository ppa:thefrontiergroup/vsftpd
@@ -59,7 +56,6 @@ sudo mkdir -p /home/vagrant/app/protected/runtime
 sudo chmod -R 777 /home/vagrant/app/protected/runtime
 sudo mkdir -p /home/vagrant/app/assets
 sudo chmod -R 777 /home/vagrant/app/assets
-
 
 sudo apt-get install -q -y --force-yes php5-gd
 
